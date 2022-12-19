@@ -84,6 +84,8 @@ jobs:
           command: |
             chmod +x deploy.sh && \
             ./deploy.sh
+            # Wait for deploy success 
+            
 
       - run:
           name: Test flask app is deployed 
@@ -95,6 +97,7 @@ jobs:
               echo "App work at ${url}"
             else
               kubectl rollout undo deployment/myflaskapp-deployment
+              kubectl rollout status deployment myflaskapp-deployment --timeout=90s
               echo "App didn't work after deploy. Rollback previous deploy.Check result at ${url}"
             fi
 

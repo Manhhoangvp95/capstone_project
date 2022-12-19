@@ -8,3 +8,6 @@ export KUBECONFIG=~/.kube/config
 cat flask_deployment.yaml | envsubst '${CIRCLE_SHA1}' > flask_config_deployment.yaml
 # Deploy
 kubectl apply -f flask_config_deployment.yaml
+
+# this wait for 'Available=True' only works for initial deployment, not rolling
+kubectl wait deployment myflaskapp-deployment --for condition=Available=True --timeout=90s
