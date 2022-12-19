@@ -3,10 +3,10 @@ FROM python:3.6-slim
 # Update dependencies and install dependencies
 # hadolint ignore=DL3008
 RUN apt-get clean \
-    && apt-get -y install --no-install-recommends \
+    && apt-get -y update \
+    && apt-get -y install \
     python3-dev \
     build-essential \
-    && apt-get -y update \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a working directory
