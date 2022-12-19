@@ -84,11 +84,7 @@ jobs:
           command: |
             chmod +x deploy.sh && \
             ./deploy.sh
-      - run:
-          name: Pull latest image to backup
-          command:
-            docker pull 055771427366.dkr.ecr.us-east-1.amazonaws.com/manhhoang:latest
-            docker tag 055771427366.dkr.ecr.us-east-1.amazonaws.com/manhhoang:backup
+
       - run:
           name: Test flask app is deployed 
           command: |
@@ -100,8 +96,6 @@ jobs:
             else
               kubectl rollout undo deployment/myflaskapp-deployment
               echo "App didn't work after deploy. Rollback previous deploy.Check result at ${url}"
-              docker tag 055771427366.dkr.ecr.us-east-1.amazonaws.com/manhhoang:latest
-              docker push 055771427366.dkr.ecr.us-east-1.amazonaws.com/manhhoang:latest
             fi
 
 
