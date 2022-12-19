@@ -5,6 +5,5 @@ then
   echo "cluster existed!"
 else
   eksctl create cluster --config-file=cluster.yaml
+  sleep 15m 30s
 fi
-
-sleep 15m 30s
