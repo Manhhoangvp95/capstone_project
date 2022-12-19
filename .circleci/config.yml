@@ -55,6 +55,13 @@ jobs:
           dockerfile: Dockerfile
           repo: circleci-push-image-demo
           tag: latest,$CIRCLE_SHA1
+          environment:
+            ORB_ENV_REGISTRY_ID: << parameters.registry-id >>
+            ORB_EVAL_PUBLIC_REGISTRY_ALIAS: <<parameters.public-registry-alias>>
+            ORB_EVAL_REGION: << parameters.region >>
+            ORB_EVAL_REPO: << parameters.repo >>
+            ORB_EVAL_TAG: << parameters.tag >>
+            ORB_VAL_PUBLIC_REGISTRY: <<parameters.public-registry>>
 
 
 workflows:
