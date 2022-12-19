@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if aws eks list-clusters | grep -q "${cluster-name}"
+if aws eks list-clusters | grep -q "${cluster_name}"
 then
   echo "cluster existed!"
 else
