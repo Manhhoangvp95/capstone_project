@@ -89,6 +89,7 @@ jobs:
             ./deploy.sh
             # Wait for deploy success 
             kubectl wait  --for=condition=ready pod -l app=myflaskapp
+            sleep 30s
 
       - run:
           name: Test flask app is deployed 
