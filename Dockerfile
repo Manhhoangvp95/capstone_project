@@ -1,15 +1,14 @@
 FROM python:3.6-slim
 
-# Update dependencies
+# Update dependencies and install dependencies
 RUN apt-get clean \
-    && apt-get -y update
-
-# Install dependencies		
-RUN apt-get -y install \
+    && apt-get -y install \
     nginx \
     python3-dev \
-    build-essential
-		
+    build-essential \
+    && apt-get -y update \
+    && rm -rf /var/lib/apt/lists/*
+
 # Create a working directory
 WORKDIR /app
 
