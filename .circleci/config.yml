@@ -41,6 +41,7 @@ jobs:
           command: |
             . venv/bin/activate
             make lint
+            hadolint Dockerfile
 workflows:
   default:
     jobs:
