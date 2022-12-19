@@ -4,7 +4,7 @@ FROM python:3.6-slim
 # hadolint ignore=DL3008
 RUN apt-get clean \
     && apt-get -y update \
-    && apt-get -y install \
+    && apt-get -y install --no-install-recommends \
     python3-dev \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
