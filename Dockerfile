@@ -4,7 +4,6 @@ FROM python:3.6-slim
 # hadolint ignore=DL3008
 RUN apt-get clean \
     && apt-get -y install --no-install-recommends \
-    nginx \
     python3-dev \
     build-essential \
     && apt-get -y update \
