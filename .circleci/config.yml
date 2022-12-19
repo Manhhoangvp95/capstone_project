@@ -5,7 +5,7 @@
 version: 2.1
 
 orbs:
-  aws-ecr: circleci/aws-ecr@8.2.1
+  aws-ecr: circleci/aws-ecr@7.3.0
 jobs:
   lint_test:
     docker:
@@ -50,18 +50,11 @@ jobs:
       - image: cimg/base:stable
     steps:
       - setup_remote_docker:
-          version: 20.10.11
+          version: 20.10.9
       - aws-ecr/build-and-push-image:
           dockerfile: Dockerfile
           repo: circleci-push-image-demo
           tag: latest,$CIRCLE_SHA1
-          environment:
-            ORB_ENV_REGISTRY_ID: << parameters.registry-id >>
-            ORB_EVAL_PUBLIC_REGISTRY_ALIAS: <<parameters.public-registry-alias>>
-            ORB_EVAL_REGION: << parameters.region >>
-            ORB_EVAL_REPO: << parameters.repo >>
-            ORB_EVAL_TAG: << parameters.tag >>
-            ORB_VAL_PUBLIC_REGISTRY: <<parameters.public-registry>>
 
 
 workflows:
