@@ -74,7 +74,6 @@ jobs:
             curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
             mv /tmp/eksctl /usr/local/bin
             
-
       - run:
           name: Create cluster
           command: |
@@ -86,6 +85,11 @@ jobs:
             chmod +x deploy.sh && \
             ./deploy.sh
       - run:
+          name: Pull latest image to backup
+          command:
+            docker pull 055771427366.dkr.ecr.us-east-1.amazonaws.com/manhhoang:latest
+            docker tag 055771427366.dkr.ecr.us-east-1.amazonaws.com/manhhoang:backup
+      - run:
           name: Test flask app is deployed 
           command: |
             export hostname=$(kubectl get services flask-service  -o jsonpath="{.status.loadBalancer.ingress[0].hostname}")
@@ -96,6 +100,8 @@ jobs:
             else
               kubectl rollout undo deployment/myflaskapp-deployment
               echo "App didn't work after deploy. Rollback previous deploy.Check result at ${url}"
+              docker tag 055771427366.dkr.ecr.us-east-1.amazonaws.com/manhhoang:latest
+              docker push 055771427366.dkr.ecr.us-east-1.amazonaws.com/manhhoang:latest
             fi
 
 

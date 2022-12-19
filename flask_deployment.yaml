@@ -1,5 +1,4 @@
 ---
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,7 +17,7 @@ spec:
     spec:
       containers:
         - name: myflaskapp
-          image: 055771427366.dkr.ecr.us-east-1.amazonaws.com/manhhoang:latest
+          image: 055771427366.dkr.ecr.us-east-1.amazonaws.com/manhhoang:${CIRCLE_SHA1}
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
