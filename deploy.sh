@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-aws eks update-kubeconfig --region us-east-1 --name test-cluster
+aws eks update-kubeconfig --region us-east-1 --name ${cluster-name}
 
 export KUBECONFIG=~/.kube/config
 

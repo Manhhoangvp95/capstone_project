@@ -7,7 +7,7 @@ version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@8.2.1
 jobs:
-  lint_test:
+  lint-test:
     docker:
     # Use the same Docker base as the project
       - image: python:3.7.3-stretch
@@ -86,12 +86,12 @@ jobs:
 workflows:
   default:
     jobs:
-      - lint_test
+      - lint-test
       - aws-ecr:
-          context:
-            - AWS-ECR-DEMO
           filters:
             branches:
               only:
                 - master
-      - aws-eks
+          requires: [lint-test]
+      - aws-eks:
+          requires: [aws-ecr]
