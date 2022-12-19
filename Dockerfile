@@ -2,7 +2,7 @@ FROM python:3.6-slim
 
 # Update dependencies and install dependencies
 RUN apt-get clean \
-    && apt-get -y install \
+    && apt-get -y install --no-install-recommends \
     nginx \
     python3-dev \
     build-essential \
