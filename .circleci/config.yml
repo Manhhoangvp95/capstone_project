@@ -88,8 +88,8 @@ jobs:
       - run:
           name: Test flask app is deployed 
           command: |
-            export hostname = $(kubectl get services flask-service  -o jsonpath="{.status.loadBalancer.ingress[0].hostname}")
-            export url = "http://${hostname}:8000"
+            export hostname=$(kubectl get services flask-service  -o jsonpath="{.status.loadBalancer.ingress[0].hostname}")
+            export url="http://${hostname}:8000"
             if curl -X GET ${url} | grep -q "Hello World"
             then
               echo "App work at ${url}"
