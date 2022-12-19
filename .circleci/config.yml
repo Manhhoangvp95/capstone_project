@@ -60,12 +60,12 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
-      - create-cluster:
+      - run:
           name: Create cluster
           command: |
             chmod +x run_create_cluster.sh && \
             ./run_create_cluster.sh
-      - deploy:
+      - run:
           name: Deploy Kubenetes to eks
           command: |
             chmod +x deploy.sh && \
@@ -83,3 +83,4 @@ workflows:
             branches:
               only:
                 - master
+      - aws-eks
