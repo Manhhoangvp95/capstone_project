@@ -49,7 +49,6 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
       - setup_remote_docker:
           version: 20.10.11
       - aws-ecr/build-and-push-image:
@@ -61,6 +60,7 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
+      - checkout
       - run:
           name: Create cluster
           command: |
