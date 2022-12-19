@@ -56,6 +56,21 @@ jobs:
           repo: manhhoang
           tag: latest,$CIRCLE_SHA1
 
+  aws-eks:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - create-cluster:
+          name: Create cluster
+          command: |
+            chmod +x run_create_cluster.sh && \
+            ./run_create_cluster.sh
+      - deploy:
+          name: Deploy Kubenetes to eks
+          command: |
+            chmod +x deploy.sh && \
+            ./deploy.sh
+
 
 workflows:
   default:

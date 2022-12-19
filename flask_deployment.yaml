@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: myflaskapp
-          image: docker.io/muthiendia/helloworld2:v1
+          image: 055771427366.dkr.ecr.us-east-1.amazonaws.com/manhhoang:latest
           # imagePullPolicy: Never
           ports:
             - containerPort: 5000

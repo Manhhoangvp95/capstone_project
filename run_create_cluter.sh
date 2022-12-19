@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-aws eks describe-cluster --name test-cluster
+if aws eks list-clusters | grep -q "test-cluster"
+then
+  echo "cluster existed!"
+else
+  eksctl create cluster --config-file=cluster.yaml
+fi
 
-eksctl create cluster --config-file=cluster.yaml
-
-kubectl apply -f flask_deployment.yaml
+sleep 15m 30s
