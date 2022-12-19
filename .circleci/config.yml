@@ -64,6 +64,8 @@ jobs:
       - run:
           name: Create cluster
           command: |
+            ls
+            pwd
             chmod +x run_create_cluster.sh && \
             ./run_create_cluster.sh
       - run:
