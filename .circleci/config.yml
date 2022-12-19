@@ -45,9 +45,12 @@ jobs:
             . venv/bin/activate
             make lint
             hadolint Dockerfile
-            
+  aws-ecr:
+    docker:
+      - image: cimg/base:stable
+    steps:
       - setup_remote_docker:
-          version: 20.10.9
+          version: 20.10.11
       - aws-ecr/build-and-push-image:
           dockerfile: Dockerfile
           repo: circleci-push-image-demo
@@ -58,3 +61,10 @@ workflows:
   default:
     jobs:
       - lint_test
+      - aws-ecr:
+          context:
+            - AWS-ECR-DEMO
+          filters:
+            branches:
+              only:
+                - master
