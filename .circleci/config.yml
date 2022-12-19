@@ -79,6 +79,7 @@ jobs:
           name: Deploy Kubenetes to eks
           command: |
             source ~/.bashrc
+            export KUBECONFIG=/root/.kube/config
             chmod +x deploy.sh && \
             ./deploy.sh
 
