@@ -45,6 +45,9 @@ jobs:
             . venv/bin/activate
             make lint
             hadolint Dockerfile
+  backup-docker-image:
+    
+  
   aws-ecr:
     docker:
       - image: cimg/base:stable
@@ -85,7 +88,7 @@ jobs:
             chmod +x deploy.sh && \
             ./deploy.sh
             # Wait for deploy success 
-            
+            kubectl wait  --for=condition=ready pod -l app=myflaskapp
 
       - run:
           name: Test flask app is deployed 
