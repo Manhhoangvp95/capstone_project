@@ -100,3 +100,4 @@ workflows:
   default:
     jobs:
       - lint_test
+      - build
