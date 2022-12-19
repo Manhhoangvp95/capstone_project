@@ -68,8 +68,6 @@ jobs:
             chmod +x ./kubectl
             mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
             echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
-            source ~/.bashrc
-            kubectl version --short --client
       - run:
           name: Create cluster
           command: |
@@ -80,6 +78,7 @@ jobs:
       - run:
           name: Deploy Kubenetes to eks
           command: |
+            source ~/.bashrc
             chmod +x deploy.sh && \
             ./deploy.sh
 
