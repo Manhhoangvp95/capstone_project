@@ -85,6 +85,18 @@ jobs:
           command: |
             chmod +x deploy.sh && \
             ./deploy.sh
+      - run:
+          name: Test flask app is deployed 
+          command: |
+            export hostname = $(kubectl get services flask-service  -o jsonpath="{.status.loadBalancer.ingress[0].hostname}")
+            export url = "http://${hostname}:8000"
+            if curl -X GET ${url} | grep -q "Hello World"
+            then
+              echo "App work at ${url}"
+            else
+              kubectl rollout undo deployment/myflaskapp-deployment
+              echo "App didn't work after deploy. Rollback previous deploy.Check result at ${url}"
+            fi
 
 
 workflows:
