@@ -1,0 +1,2 @@
+github_url=https://github.com/Manhhoangvp95/capstone_project
+ingress_flask_service=http://af3f689cccc8c4d338034124b1ef2ca4-1218860028.us-east-1.elb.amazonaws.com:8000/
